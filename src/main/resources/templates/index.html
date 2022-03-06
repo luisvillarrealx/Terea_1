@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>DB</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2>Lista de destinos desde base de datos</h2>
+        <br>
+        <a th:href="@{/nuevoDestino}">Nuevo destino</a>
+        <br>
+        <br>
+        <div th:if="${destinosDB != null and !destinosDB.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>País</th>
+                        <th>Ciudad</th>
+                        <th>Precio</th>
+                        <th>Descrpción</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item: ${destinosDB}">
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.pais}"></td>
+                        <td th:text="${item.ciudad}"></td>
+                        <td th:text="${item.precio}"></td>
+                        <td><a th:href="@{/modificarDestino/} + ${item.id_destino}">Modificar</a></td>
+                        <td><a th:href="@{/eliminarDestino/} + ${item.id_destino}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
