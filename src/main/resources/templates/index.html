@@ -1,21 +1,111 @@
 <!DOCTYPE html>
-
 <html>
     <head>
-        <title>DB</title>
+        <title>Viajes Fidelitas</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../images/flavicon_viajes.png"/>
     </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Poppins;
+        }
+
+        h2{
+            height: 100%;
+            padding: 100px;
+            font-size: 60px;
+            text-align: center;
+            background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,151,253,1) 100%);
+            color: white;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        ul li a{
+            margin-top: 0;
+            list-style: none;
+            text-decoration: none;
+            color: darkblue;
+            font-size: 25px;
+            box-sizing: border-box;
+            font-family: Poppins;
+        }
+
+        li{
+            display: inline-block;
+            padding: 15px 30px;
+        }
+
+        a{
+            text-align: center;
+        }
+
+        a:hover{
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        ul{
+            margin-top: 0;
+            background-color: lightblue;
+            margin-bottom: 0;
+        }
+
+        #img_destino{
+            border-radius: 20px;
+        }
+
+        #add-new{
+            font-size: 1.2em;
+            background: #24A5CA;
+            padding: 15px;
+            margin: 15px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 50px;
+            height: 25px;
+            width: 25px;
+            color: white;
+            margin: 30px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+        }
+
+        table{
+            margin: 10px 30px 30px 30px;
+            width: 85%;
+        }
+
+    </style>
+
+    <header>
+        <h2>¡Los mejores destinos para disfrutar!</h2>
+    </header>
+    <nav id="nav">
+        <ul>
+            <li><a th:href="@{/}">Inicio</a></li>
+            <li><a href="@{/destinos}">Destinos</a></li><!-- debe mostrar la table DB -->
+            <li><a th:href="@{/nuevoDestino}">Agregar destino</a></li>
+            <li><a href="@{/contacto}">Contacto</a></li>
+        </ul>
+    </nav> 
+    <img src="../images/viajes_inicio.jpg" alt="" width="100%"/>
+    <br>
+
     <body>
-        <h2>Lista de destinos desde base de datos</h2>
         <br>
-        <a th:href="@{/nuevoDestino}">Nuevo destino</a>
+        <a th:href="@{/nuevoDestino}" id="add-new">Nuevo destino</a>
         <br>
         <br>
         <div th:if="${destinosDB != null and !destinosDB.empty}">
             <table border="1">
                 <thead>
                     <tr>
+                        <th>Imagen</th>
                         <th>Nombre</th>
                         <th>País</th>
                         <th>Ciudad</th>
@@ -27,15 +117,27 @@
                 </thead>
                 <tbody>
                     <tr th:each="item: ${destinosDB}">
+                        <td>
+                            <figure>
+                                <img src="../images/imagen_destino.jpg" alt="imgDestino" width="350" height="210" id="img_destino"/>
+                            </figure>
+                        </td>
                         <td th:text="${item.nombre}"></td>
                         <td th:text="${item.pais}"></td>
                         <td th:text="${item.ciudad}"></td>
                         <td th:text="${item.precio}"></td>
-                        <td><a th:href="@{/modificarDestino/} + ${item.id_destino}">Modificar</a></td>
-                        <td><a th:href="@{/eliminarDestino/} + ${item.id_destino}">Eliminar</a></td>
+                        <td th:text="${item.descripcion}"></td>
+                        <td><a th:href="@{/modificarDestino/} + ${item.id_destino}"> <img src="../images/edit.png" alt="editar"/> </a></td>
+                        <td><a th:href="@{/eliminarDestino/} + ${item.id_destino}"><img src="../images/delete.png" alt="delete"/></a></td>
+                        
+               
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div th:if="${destinosDB == null or destinosDB.empty}">
+            La lista de destinos está vacía
         </div>
     </body>
 </html>

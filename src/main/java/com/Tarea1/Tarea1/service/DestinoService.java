@@ -1,4 +1,4 @@
-package com.Tarea1.Tarea1.DestinoService;
+package com.Tarea1.Tarea1.service;
 
 import com.Tarea1.Tarea1.domain.Destino;
 import java.util.List;
