@@ -62,7 +62,7 @@
 
         #add-new{
             font-size: 1.2em;
-            background: #24A5CA;
+            background: #6495ED;
             padding: 15px;
             margin: 15px;
             text-decoration: none;
@@ -78,6 +78,32 @@
         table{
             margin: 10px 30px 30px 30px;
             width: 85%;
+            border-collapse: collapse;
+        }
+
+        th{
+            background-color: #dceaff;
+            padding: 20px;
+        }
+
+        table td{
+            margin: 50px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
 
     </style>
@@ -93,7 +119,7 @@
             <li><a href="@{/contacto}">Contacto</a></li>
         </ul>
     </nav> 
-    <img src="../images/viajes_inicio.jpg" alt="" width="100%"/>
+    <img src="../images/viajes_inicio.jpg" alt="" width="100%" height="800"/>
     <br>
 
     <body>
@@ -129,8 +155,8 @@
                         <td th:text="${item.descripcion}"></td>
                         <td><a th:href="@{/modificarDestino/} + ${item.id_destino}"> <img src="../images/edit.png" alt="editar"/> </a></td>
                         <td><a th:href="@{/eliminarDestino/} + ${item.id_destino}"><img src="../images/delete.png" alt="delete"/></a></td>
-                        
-               
+
+
                     </tr>
                 </tbody>
             </table>

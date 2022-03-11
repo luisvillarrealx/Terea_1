@@ -9,16 +9,69 @@
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
-        
         *{
-            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            font-family: Poppins;
+        }
+
+        #add-new{
+            font-size: 1.2em;
+            background: #6495ED;
+            padding: 1px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 50px;
+            height: 60px;
+            width: 180px;
+            color: white;
+            margin: 30px;
+            border: none;
+        }
+
+        #add-new:hover{
+            background: #5983d0;
+            color: white;
+        }
+
+        #input-space{
+            border-radius: 5px;
+        }
+
+        a:hover{
+            font-weight: bold;
+        }
+
+        input{
+            margin: 5px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #just-form{
+            background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 200px;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+
+        #back{
+            padding: 10px;
+        }
+        
+        #back:hover{
+            background: #9abbee;
+            padding: 10px;
+            border-radius: 8px;
         }
     </style>
     
     <body>
+        <div id="just-form">
         <h2>Datos del nuevo destino</h2>
         <br>
-        <a th:href="@{/}">Regresar</a>
+        <a th:href="@{/}" id="back"> << Regresar</a>
         <br>
         <br>
         <form th:action="@{/guardarDestino}" 
@@ -40,7 +93,8 @@
             <label for="descripcion">Descripción: </label>
             <input type="text" name="descripcion" th:field="*{descripcion}" maxlength="99"/>
             <br>
-            <input type="submit" name="Guardar" value="Guardar"/>
+            <input type="submit" name="Guardar" value="Guardar" id="add-new"/>
+            </div>
         </form>
     </body>
 </html>
